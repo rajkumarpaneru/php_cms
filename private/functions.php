@@ -5,4 +5,8 @@
         }
         return WWW_ROOT . $script_path;
     }
+
+    function u($string = ""){
+        return urlencode($string);
+    }
 ?>
