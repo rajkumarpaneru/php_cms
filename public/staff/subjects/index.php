@@ -26,7 +26,7 @@
         <th>&nbsp;</th>
   	  </tr>
 
-      <?php foreach($subjects as $subject) { ?>
+      <?php while($subject = mysqli_fetch_assoc($subject_set)) { ?>
         <tr>
           <td><?php echo h($subject['id']); ?></td>
           <td><?php echo h($subject['position']); ?></td>
