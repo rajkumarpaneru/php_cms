@@ -1,7 +1,9 @@
 <?php require_once('../../../private/initialize.php'); ?>
 
 <?php
+
   $subject_set = find_all_subjects();
+
 ?>
 
 <?php $page_title = 'Subjects'; ?>
@@ -34,10 +36,11 @@
     	    <td><?php echo h($subject['menu_name']); ?></td>
           <td><a class="action" href="<?php echo url_for('/staff/subjects/show.php?id=' . h(u($subject['id']))); ?>">View</a></td>
           <td><a class="action" href="<?php echo url_for('/staff/subjects/edit.php?id=' . h(u($subject['id']))); ?>">Edit</a></td>
-          <td><a class="action" href="">Delete</a></td>
+          <td><a class="action" href="<?php echo url_for('/staff/subjects/delete.php?id=' . h(u($subject['id']))); ?>">Delete</a></td>
     	  </tr>
       <?php } ?>
   	</table>
+
     <?php
       mysqli_free_result($subject_set);
     ?>

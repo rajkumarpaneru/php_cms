@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
     <title>Globe Bank</title>
-</head>
-<body>
-    <h1>Globe Bank Coming Soon...</h1>
-</body>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+
+    <h1>Globe Bank: Coming Soon</h1>
+
+  </body>
 </html>

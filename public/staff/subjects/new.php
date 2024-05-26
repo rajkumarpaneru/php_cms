@@ -2,15 +2,13 @@
 
 require_once('../../../private/initialize.php');
 
-$test = $_GET['test'] ?? '';
+$subject_set = find_all_subjects();
+$subject_count = mysqli_num_rows($subject_set) + 1;
+mysqli_free_result($subject_set);
 
-if($test == '404') {
-  error_404();
-} elseif($test == '500') {
-  error_500();
-} elseif($test == 'redirect') {
-  redirect_to(url_for('/staff/subjects/index.php'));
-}
+$subject = [];
+$subject["position"] = $subject_count;
+
 ?>
 
 <?php $page_title = 'Create Subject'; ?>
@@ -18,12 +16,12 @@ if($test == '404') {
 
 <div id="content">
 
-  <a class="back-link" href="">&laquo; Back to List</a>
+  <a class="back-link" href="<?php echo url_for('/staff/subjects/index.php'); ?>">&laquo; Back to List</a>
 
   <div class="subject new">
     <h1>Create Subject</h1>
 
-    <form action="<?php echo url_for('/staff/subjects/create.php');?>" method="post">
+    <form action="<?php echo url_for('/staff/subjects/create.php'); ?>" method="post">
       <dl>
         <dt>Menu Name</dt>
         <dd><input type="text" name="menu_name" value="" /></dd>
@@ -32,7 +30,15 @@ if($test == '404') {
         <dt>Position</dt>
         <dd>
           <select name="position">
-            <option value="1">1</option>
+          <?php
+            for($i=1; $i <= $subject_count; $i++) {
+              echo "<option value=\"{$i}\"";
+              if($subject["position"] == $i) {
+                echo " selected";
+              }
+              echo ">{$i}</option>";
+            }
+          ?>
           </select>
         </dd>
       </dl>
