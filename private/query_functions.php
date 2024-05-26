@@ -17,15 +17,17 @@
         return $result;
     }
 
-    function find_subject_by_id($id){
+    function find_subject_by_id($id) {
         global $db;
+    
         $sql = "SELECT * FROM subjects ";
-        $sql .= "WHERE id='". $id . "';";
+        $sql .= "WHERE id='" . $id . "'";
         $result = mysqli_query($db, $sql);
         confirm_result_set($result);
+        $subject = mysqli_fetch_assoc($result);
         mysqli_free_result($result);
-        return $result;
-    }
+        return $subject;
+      }
 
     function insert_subject($menu_name, $position, $visible){
             $menu_name = $_POST['menu_name'] ?? "";
