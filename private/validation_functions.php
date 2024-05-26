@@ -39,17 +39,35 @@
   	return in_array($value, $set);
   }
 
+  
   function has_exclusion_of($value, $set) {
     return !in_array($value, $set);
   }
+
 
   function has_string($value, $required_string) {
     return strpos($value, $required_string) !== false;
   }
 
- function has_valid_email_format($value) {
+  
+  function has_valid_email_format($value) {
     $email_regex = '/\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\Z/i';
     return preg_match($email_regex, $value) === 1;
+  }
+
+  
+  function has_unique_page_menu_name($menu_name, $current_id="0") {
+    global $db;
+
+    $sql = "SELECT * FROM pages ";
+    $sql .= "WHERE menu_name='" . $menu_name . "' ";
+    $sql .= "AND id != '" . $current_id . "'";
+
+    $page_set = mysqli_query($db, $sql);
+    $page_count = mysqli_num_rows($page_set);
+    mysqli_free_result($page_set);
+
+    return $page_count === 0;
   }
 
 ?>
