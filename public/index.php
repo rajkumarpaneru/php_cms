@@ -1,6 +1,14 @@
 <?php require_once('../private/initialize.php'); ?>
 
 <?php
+
+  $preview = false;
+  if(isset($_GET['preview'])){
+    $preview = $_GET['preview'] == 'ture' ? true : false;
+  }
+
+  $visible = !$preview;
+  
   if(isset($_GET['id'])){
     $page_id = $_GET['id'];
     $page = find_page_by_id($page_id, ['visible' => true]);
