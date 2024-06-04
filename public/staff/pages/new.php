@@ -23,7 +23,7 @@ if(is_post_request()) {
 } else {
 
   $page = [];
-  $page['subject_id'] = '';
+  $page['subject_id'] = $_GET['subject_id'] ?? '';
   $page['menu_name'] = '';
   $page['position'] = '';
   $page['visible'] = '';
@@ -49,7 +49,7 @@ mysqli_free_result($page_set);
 
     <?php echo display_errors($errors); ?>
 
-    <form action="<?php echo url_for('/staff/pages/new.php'); ?>" method="post">
+    <form action="<?php echo url_for('/staff/pages/new.php?subject_id=', h(u($subject['id']))); ?>" method="post">
       <dl>
         <dt>Subject</dt>
         <dd>
