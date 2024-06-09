@@ -1,5 +1,5 @@
 <?php 
-    $upload_dir = __DIR__ . '/uploads';
+    $upload_dir = __DIR__ . '/../../uploads';
     if(isset($_POST['submit'])){
         $tmp_path = $_FILES['file_upload']['tmp_name'];
         $filename = basename($_FILES['file_upload']['name']);
