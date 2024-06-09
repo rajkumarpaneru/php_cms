@@ -43,7 +43,7 @@ if(isset($_POST['submit'])) {
 
 	} else {
 		// choose a new file name if desired
-		$target_path = "{$image_dir}/{$filename}";
+		$target_path = "{$upload_dir}/{$filename}";
 
         echo $target_path . "\n";
 		// move file to permanent location

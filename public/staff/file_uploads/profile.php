@@ -1,11 +1,11 @@
 <?php
 
 // Values that might come from a database
-$name = 'Larry Larrison';
-$image = 'profile_larry.jpg';
+$name = 'Admin';
+$image = '1709629956268.jpeg';
 
-$upload_dir = __DIR__ . '/../../uploads';
-$image_filepath = "{$image_dir}/{$image}";
+$upload_dir =  '../../uploads';
+$image_filepath = "{$upload_dir}/{$image}";
 
 ?>
 
@@ -19,7 +19,7 @@ $image_filepath = "{$image_dir}/{$image}";
 
 		<p>Profile image:<br />
 			<?php if($image != '' && file_exists($image_filepath)) { ?>
-				<img src="<?php echo "images/{$image}"; ?>" /><br />
+				<img src="<?php echo "$image_filepath"; ?>" /><br />
 				<a href="upload_image.php">Edit image</a>
 			<?php } else { ?>
 				<a href="upload_image.php">Add an image</a>
