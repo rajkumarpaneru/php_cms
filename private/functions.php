@@ -73,5 +73,14 @@ function get_add_clear_session_message(){
   }
 }
 
+function extract_params($params_list){
+  $data = [];
+  foreach($params_list as $param){
+    $data[$param] = $_POST[$param] ?? '';
+  }
+  
+  return $data;
+} 
+
 
 ?>
