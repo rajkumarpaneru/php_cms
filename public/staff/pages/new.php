@@ -3,6 +3,8 @@
 require_once('../../../private/initialize.php');
 
 if(is_post_request()) {
+  if(is_csrf_token_valid()){
+
 
   $page = extract_params(['subject_id', 'menu_name', 'position', 'visible', 'content']);
 
@@ -14,6 +16,9 @@ if(is_post_request()) {
   } else {
     $errors = $result;
   }
+}else{
+  $errors = "CSRF TOKEN MISMATCH!";
+}
 
 } else {
 
@@ -42,6 +47,7 @@ $page_count = count_pages_by_subject_id($page['subject_id']) + 1;
     <?php echo display_errors($errors); ?>
 
     <form action="<?php echo url_for('/staff/pages/new.php?subject_id=', h(u($subject['id']))); ?>" method="post">
+      <?php echo csrf_token_tag(); ?>
       <dl>
         <dt>Subject</dt>
         <dd>
