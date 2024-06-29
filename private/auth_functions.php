@@ -24,7 +24,7 @@ function is_logged_in() {
 function require_login(){
     if(!is_logged_in()){
         redirect_to(url_for('/staff/login.php'));
-    }else{
+    } else {
 
     }
 }
