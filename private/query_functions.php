@@ -5,13 +5,18 @@
   function find_all_subjects($options=[]) {
     global $db;
 
+    $perPage = $options['perPage'] ?? null;
     $visible = $options['visible'] ?? false;
 
     $sql = "SELECT * FROM subjects ";
     if($visible) {
       $sql .= "WHERE visible = true ";
     }
-    $sql .= "ORDER BY position ASC";
+    $sql .= "ORDER BY position ASC ";
+
+    if($perPage){
+      $sql .= "LIMIT " . $perPage;
+    }
     //echo $sql;
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
