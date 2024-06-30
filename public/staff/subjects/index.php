@@ -6,7 +6,11 @@
 <?php
 
   $subject_set = find_all_subjects(['perPage' => $_GET['perPage'] ?? null]);
-
+  $count = count_subjects();
+  $perPage = (int)($_GET['perPage'] ?? 10);
+  $current_page = (int)($_GET['pageNo'] ?? 1);
+  $total_pages = ceil($count / $perPage);
+  
 ?>
 
 <?php $page_title = 'Subjects'; ?>
@@ -15,6 +19,10 @@
 <div id="content">
   <div class="subjects listing">
     <h1>Subjects</h1>
+
+    <p class="page-status">
+      <?php echo "Page {$current_page} of {$total_pages}" ?>
+    </p>
 
     <div class="actions">
       <a class="action" href="<?php echo url_for('/staff/subjects/new.php'); ?>">Create New Subject</a>
