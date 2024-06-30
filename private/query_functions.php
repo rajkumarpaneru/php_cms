@@ -5,7 +5,12 @@
   function find_all_subjects($options=[]) {
     global $db;
 
-    $perPage = $options['perPage'] ?? null;
+    $perPage = (int)($options['perPage'] ?? 10);
+    $pageNo = (int)($option['pageNo'] ?? 1);
+
+    $limit = $perPage;
+    $offset = $perPage * ($pageNo - 1); 
+
     $visible = $options['visible'] ?? false;
 
     $sql = "SELECT * FROM subjects ";
@@ -14,13 +19,31 @@
     }
     $sql .= "ORDER BY position ASC ";
 
-    if($perPage){
-      $sql .= "LIMIT " . $perPage;
-    }
+    $sql .= "LIMIT " . $limit . " "; //db_escape limit and offset
+    
+    $sql .= "OFFSET " . $offset;
     //echo $sql;
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
     return $result;
+  }
+
+  function count_subjects($options=[]){
+    global $db;
+
+    $visible = $options['visible'] ?? false;
+
+    $sql = "SELECT COUNT(*) FROM subjects ";
+    if($visible) {
+      $sql .= "WHERE visible = true ";
+    }
+    
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $row = mysqli_fetch_row($result);
+    mysqli_free_result($result);
+    $count = $row[0];
+    return $count;
   }
 
   function find_subject_by_id($id, $options=[]) {
